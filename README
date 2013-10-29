@@ -1,15 +1,15 @@
 README
 CS211 Programming Practicum
 
-Proj1 - Simple Copy Command
-Proj2 - Parameter Passing
-Proj3 - Array Commands
-Proj4 - Find and Replace Strings
-Proj5 - Balanced Symbol Checker
-Proj6 - Maze Solving
-Proj7 - Restaurant Waiting List
-Proj8 - Infix Expression Evaluator
-Proj9 - Recursion Examples
-Proj10 - Hash Tables w/ Chaining
+Proj1 - Simple Copy Command               [arrays]
+Proj2 - Parameter Passing                 [arrays]
+Proj3 - Array Commands                    [arrays]
+Proj4 - Find and Replace Strings          [arrays]
+Proj5 - Balanced Symbol Checker           [stack / ll]
+Proj6 - Maze Solving                      [stack / ll]
+Proj7 - Restaurant Waiting List           [queue / ll]
+Proj8 - Infix Expression Evaluator        [stack / ll]
+Proj9 - Recursion Examples                [none]
+Proj10 - Hash Tables w/ Chaining          [hash table]
 Proj11 - 
 Proj12 - 
