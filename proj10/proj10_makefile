@@ -1,0 +1,16 @@
+CC=gcc
+EXEC=proj10.exe
+
+line.o_: line.h line.c
+	$(CC) -c line.c
+
+build: line.o_
+	$(CC) jgensl2proj10.c line.o -o $(EXEC)
+
+clean:
+	rm ./*.o ./$(EXEC)
+
+rebuild: clean build
+
+debug: rebuild
+	valgrind ./$(EXEC)
