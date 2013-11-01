@@ -13,4 +13,4 @@ clean:
 rebuild: clean build
 
 debug: rebuild
-	valgrind ./$(EXEC)
+	valgrind ./$(EXEC) -d
