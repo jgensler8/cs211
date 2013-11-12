@@ -1,0 +1,8 @@
+CC=gcc
+EXEC=a.out
+
+line.o_: line.h line.c
+	$(CC) -c line.c
+
+build: line.o_ main.c
+	$(CC) main.c line.o -o $(EXEC)
