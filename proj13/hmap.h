@@ -48,7 +48,7 @@ extern int ht_exists( Htable htable, char* key);
 /* param: Htable
  * func:  print the contents of the Htable
  */
-extern void ht_list( Htable htable);
+extern void ht_list( Htable htable, void (*userPrint)(void*) );
 
 //the hash function used to disribute the keys
 extern int ht_mod_hash( Htable htable, char* key);

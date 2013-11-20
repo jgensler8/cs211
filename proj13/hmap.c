@@ -96,18 +96,18 @@ void node_delete_row( Node** head){
 /* param: Node*
  * func:  print the node to stdout
  */
-void node_print( Node* temp){
+void node_print( Node* temp, void (*userPrint)(void*) ){
   fprintf( stdout, "KEY:%s:", temp->key);
-  fprintf( stdout, "VAL:"); //TODO
+  userPrint( temp->val);
 }
 
 /* param: Node**
  * func:  print a list of nodes to stdout
  */
-void node_print_row( Node** head){
+void node_print_row( Node** head, void (*userPrint)(void*) ){
   Node* temp = *head;
   while( temp != NULL){
-    node_print( temp);
+    node_print( temp, userPrint);
     temp = temp->next;
   }
   fprintf(stdout, "\n");
@@ -203,8 +203,8 @@ void ht_resize( Htable htable, int new_size){
  */
 void ht_add( Htable htable, char* key, void* val){
   ++htable->numElems;
-  printf("oldsize+1:%d:loadfactor*size:%d:\n", htable->numElems*100,
-    (htable->loadFactor)*(htable->tableSize) );
+  //printf("oldsize+1:%d:loadfactor*size:%d:\n", htable->numElems*100,
+  //  (htable->loadFactor)*(htable->tableSize) );
   if( htable->numElems*100 > htable->loadFactor * htable->tableSize )
     ht_resize( htable, 2*htable->tableSize );
   ht_add_helper( htable, key, val);
@@ -234,13 +234,13 @@ int ht_exists( Htable htable, char* key){
 /* param: Htable
  * func:  print the contents of the Htable
  */
-void ht_list( Htable htable){
+void ht_list( Htable htable, void (*userPrint)(void*) ){
   fprintf( stdout, "Table Size: %d\n", htable->tableSize);
   fprintf( stdout, "Load Factor: %d\n", htable->loadFactor);
   int i;
   for( i=0; i<htable->tableSize; ++i){
     fprintf( stdout, "%d: ", i);
-    node_print_row( &(  (htable->table)[i]  ) );
+    node_print_row( &(  (htable->table)[i]  ), userPrint );
   }
 }
 

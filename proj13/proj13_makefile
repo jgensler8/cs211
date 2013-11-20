@@ -1,10 +1,12 @@
-CC=gcc EXEC=a.out MAIN=jgensl2proj13.c
+CC=gcc
+EXEC=a.out
+MAIN=jgensl2proj13.c
 
 hmap.o_: hmap.c hmap.h
 	$(CC) -c hmap.c -o hmap.o
 
 build: hmap.o_ $(MAIN)
-	$(CC) $(MAIN) hmap.o -o $(EXEC)
+	$(CC) $(MAIN) hmap.o -lm -o $(EXEC)
 
 clean:
 	rm ./*.o EXEC
