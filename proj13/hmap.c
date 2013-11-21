@@ -232,6 +232,27 @@ int ht_exists( Htable htable, char* key){
 }
 
 /* param: Htable
+ * param: char* key
+ * func:  get the value with the associate key
+ * ret:   key value || NULL if doesn't exist
+ */
+extern void* ht_get( Htable htable, char* key){
+  if( ht_exists( htable, key) ){
+    int val_expec = ht_mod_hash( htable, key);
+    Node* temp = (htable->table)[val_expec];
+    while( temp != NULL){
+      if( 0 == strcmp(temp->key, key)) break;
+      temp = temp->next;
+    }
+    return temp->val;
+  }
+  else{
+    fprintf( stderr, "CANT GET. VALUE DOESN'T EXIST\n");
+    return NULL;
+  }
+}
+
+/* param: Htable
  * func:  print the contents of the Htable
  */
 void ht_list( Htable htable, void (*userPrint)(void*) ){

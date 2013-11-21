@@ -46,11 +46,17 @@ extern void ht_resize( Htable htable, int new_size);
 extern int ht_exists( Htable htable, char* key);
 
 /* param: Htable
+ * param: char* key
+ * func:  get the value with the associate key
+ * ret:   key value || NULL if doesn't exist
+ */
+extern void* ht_get( Htable htable, char* key);
+
+/* param: Htable
  * func:  print the contents of the Htable
  */
 extern void ht_list( Htable htable, void (*userPrint)(void*) );
 
 //the hash function used to disribute the keys
 extern int ht_mod_hash( Htable htable, char* key);
-
 

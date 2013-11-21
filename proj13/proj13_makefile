@@ -5,8 +5,11 @@ MAIN=jgensl2proj13.c
 hmap.o_: hmap.c hmap.h
 	$(CC) -c hmap.c -o hmap.o
 
-build: hmap.o_ $(MAIN)
-	$(CC) $(MAIN) hmap.o -lm -o $(EXEC)
+line.o_: line.c line.h
+	$(CC) -c line.c -o line.o
+
+build: hmap.o_ line.o_ $(MAIN)
+	$(CC) $(MAIN) hmap.o line.o -lm -o $(EXEC)
 
 clean:
 	rm ./*.o EXEC
