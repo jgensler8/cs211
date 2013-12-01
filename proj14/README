@@ -1,0 +1,25 @@
+Proj 14
+Jeff Gensler
+
+This project simulates a series of airports (nodes) and the flights that
+connect this airports. The graph is directed.
+
+commands include:
+  q -- quit
+  t <int> <int> -- can travel 
+  r <int> -- delete all nodes and resize
+  i <int> <int> -- insert an edge
+  d <int> <int> -- delete and edge
+  l -- list the edges
+  [unimplemented] f -- execute file with these commands (except file)
+
+building:
+  $ make -f proj14_make build
+running:  
+  $ ./a.out
+
+notes:
+  I have enabled my DFS algorithm to encouter cycles (because technically 
+  the cyclic flights don't inhibit traveling from A to B to C ...)
+  I also have left out the case where if you leave X to go to X, you will
+  always make it, even if the edge to itself is not present.
