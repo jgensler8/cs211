@@ -7,6 +7,7 @@ Graph graph_init( int (*cmp)(void*,void*), int (*val_to_index)(void*), void (*pr
 void graph_free( Graph);
 int graph_edge_exists( Graph, void*, void*);
 void graph_add_edge( Graph, void*, void*);
+void graph_del_edge( Graph, void*, void*);
 void graph_erase( Graph);
 void graph_resize( Graph, int);
 void graph_list( Graph );

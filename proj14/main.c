@@ -122,7 +122,7 @@ void cmd_insert( Graph g, Command c, Data* d){
 }
 
 void cmd_delete( Graph g, Command c, Data* d){
-  //graph_delete_edge( g, c->num1, c->num2);
+  graph_del_edge( g, &c->num1, &c->num2);
 }
 
 void cmd_list( Graph g){

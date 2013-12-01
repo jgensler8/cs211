@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include "graph.h"
 
 #define GRAPH_INIT_SIZE 10
 
@@ -8,13 +9,13 @@ typedef struct node_struct{
   void *val;
 } Node;
 
-typedef struct graph_struct{
+struct graph_struct{
   Node** adjList; //adjacency list
   int maxSize; //max size of adjList
   int (*cmp)(void*, void*); // how to compare the values stored
   int (*hash)(void* ); //tells the graph what index to look to for given void*
   void (*print)(void* ); // how to print the values stored
-} *Graph;
+};
 
 /* param: int *cmp, how to compare the values stored
  * param: void *val_to_index, tells the graph what index to look to for a val
@@ -137,6 +138,53 @@ void graph_add_edge( Graph g, void* from, void* to){
   addition->val = to;
   addition->next = (g->adjList)[fromPosition]; // could be NULL
   (g->adjList)[fromPosition] = addition; //place new node at from of list
+}
+
+/* param: Graph
+ * param: void*, from
+ * param: void*, to
+ * func:  if an edge from 'from' to 'to' exists, delete it
+ */
+void graph_del_edge( Graph g, void* from, void* to){
+  int toPosition = g->hash( to);
+  int fromPosition = g->hash( from);
+  int largest = toPosition > fromPosition ? toPosition : fromPosition;
+  int smallest = toPosition < fromPosition ? toPosition : fromPosition;
+  if( smallest < 0){
+    fprintf( stderr, "ERROR, EDGE POSITION BELOW ZERO (%d)\n", smallest);
+    return;
+  }  
+  if( largest > g->maxSize){
+    fprintf( stderr, "ERROR, EDGE POSITION ABOVE MAX (%d)\n", largest);
+    return;
+  }
+  Node* temp = (g->adjList)[fromPosition];
+  if( temp == NULL){
+    fprintf( stderr, "ERROR, CANT DELETE FROM EMPTY LIST\n");
+    return;
+  }
+  else if( temp->next == NULL){
+    if( g->cmp( temp->val, to) == 0){
+      fprintf( stdout, "DELETING EDGE\n");
+      free( temp);
+      (g->adjList)[fromPosition] = NULL;
+    }
+    else fprintf( stdout, "SORRY, NODE DOESNT EXIST\n");
+    return;
+  }
+  else{
+    while( temp->next != NULL){
+      if( 0 == g->cmp( temp->next->val , to) ){
+        fprintf( stdout, "DELETING EDGE\n");
+        Node* holder = temp->next;
+        temp->next = temp->next->next;
+        free( holder);
+        return;
+      }
+      temp = temp->next;
+    }
+    fprintf( stdout, "SORRY, NODE DOESNT EXIST\n");
+  }
 }
 
 /* param: Graph

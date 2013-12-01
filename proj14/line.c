@@ -5,13 +5,13 @@
 #include "line.h"
 #define DEFAULT_SIZE 10
 
-typedef struct line_struct{
+struct line_struct{
   char* line;
   int max_size;
   int cur_size;
   int tot_read;
   FILE* file;
-} *Line;
+};
 
 /*func: initializes Line's members
 */
