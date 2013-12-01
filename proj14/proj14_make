@@ -1,0 +1,11 @@
+CC=gcc
+EXEC=a.out
+
+line.o_: line.h line.c
+	$(CC) line.c -c -o line.o
+
+graph.o_: graph.h graph.c
+	$(CC) graph.c -c -o graph.o
+
+build: line.o_ graph.o_ main.c
+	$(CC) main.c line.o graph.o -o a.out
