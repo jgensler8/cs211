@@ -175,6 +175,7 @@ void graph_list( Graph g){
  * param: void*, from (node val)
  * param: int&*, the status of each node
  * func: launch a dfs from void*
+ *    any parent of a cycle will receive a -2 flag code
  *    flag codes:
  *    -2: discovered, completed, has cycle
  *    -1: discovered, expanding, has cycle
@@ -198,25 +199,21 @@ int graph_dfs_helper( Graph g, void* from, int** flags){
     Node* toValNode = (g->adjList)[ fromPosition];
     while( toValNode != NULL){ //for every neighbor, launch DFS
       if( 0 == graph_dfs_helper( g, toValNode->val, flags))
-        (*flags)[ fromPosition] = -1; //a chlid of mine has a cycle
+        (*flags)[ fromPosition] = -1; //a child of mine has a cycle
       toValNode = toValNode->next;
     }
-    if( (*flags)[ fromPosition] == 1)
-        (*flags)[ fromPosition] = 2;
-    else (*flags)[ fromPosition] = -2;
-    return 1;
+    if( (*flags)[ fromPosition] == 1){ //if i still don't have cycles...
+      (*flags)[ fromPosition] = 2;
+      return 1;
+    }
+    else{
+      (*flags)[ fromPosition] = -2; // else i have cycles, dont expand later
+      return 0;
+    }
   }
   else if( (*flags)[ fromPosition] == 1){
     fprintf( stderr, "CYCLE DETECTED\n");
-    (*flags)[ fromPosition] = -1; // mark myself as commiting a cycle
-    Node* toValNode = (g->adjList)[ fromPosition];
-    while( toValNode != NULL){
-      graph_dfs_helper( g, toValNode->val, flags);
-      toValNode = toValNode->next;
-    }
-    if( (*flags)[ fromPosition] == 1)
-        (*flags)[ fromPosition] = 2;
-    else (*flags)[ fromPosition] = -2;
+    (*flags)[ fromPosition] = -1; // mark ancestor as commiting a cycle
     return 0; 
   }
   else if( (*flags)[fromPosition] == 2) return 1;
@@ -243,9 +240,10 @@ int* graph_dfs( Graph g, void* from){
  * param: void*, to
  * func:  evaluate if there is a viable path from 'from' to 'to'
  * ret:
- *    -1: error in finding path
+ *    -1: error in path criteria
  *    0:  no path found
  *    1:  path found
+ *    2:  error, cycles in path but path found
  */
 int graph_dfs_target( Graph g, void* from, void* to){
   int toPosition = g->hash( to);
@@ -253,16 +251,16 @@ int graph_dfs_target( Graph g, void* from, void* to){
   if( fromPosition < 0 || fromPosition >= g->maxSize
       || toPosition < 0 || toPosition >= g->maxSize) return -1;
   int* results = graph_dfs( g, from);
-  if( results[toPosition] == -2){
-    free(results); 
-    return -1;
-  }
-  else if( results[toPosition] == 0){
+  if( results[toPosition] == 0){
     free(results); 
     return 0;
   }
-  else{
+  else if( results[toPosition] == 2){
     free(results); 
     return 1;
+  }
+  else if( results[toPosition] == -2){
+    free(results); 
+    return 2;
   }
 }

@@ -105,7 +105,9 @@ void cmd_can_travel( Graph g, Command c){
   switch( val){
     case 0: fprintf( stdout, "SORRY, no path found\n"); break;
     case 1: fprintf( stdout, "SUCCESS, path found!\n"); break;
-    default: fprintf( stderr, "ERROR, path found but cycles detected\n");
+    case 2: fprintf( stdout, "ERROR, path found but cycles detected\n"); 
+            break;
+    default: fprintf( stderr, "ERROR, invald path criteria\n");
   }
 }
 
