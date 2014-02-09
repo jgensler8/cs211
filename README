@@ -1,17 +1,18 @@
-README
-CS211 Programming Practicum
+**CS211: Programming Practicum**
+===
 
-Proj1 - Simple Copy Command               [arrays]
-Proj2 - Parameter Passing                 [arrays]
-Proj3 - Array Commands                    [arrays]
-Proj4 - Find and Replace Strings          [arrays]
-Proj5 - Balanced Symbol Checker           [stack / ll]
-Proj6 - Maze Solving                      [stack / ll]
-Proj7 - Restaurant Waiting List           [queue / ll]
-Proj8 - Infix Expression Evaluator        [stack / ll]
-Proj9 - Recursion Examples                [none]
-Proj10 - Hash Tables w/ Chaining          [hash table]
-Proj11 - Fixing Code (incomplete)         [none] 
-Proj12 - Linked List Recursive Fx         [ll]
-Proj13 - Flight Simulator                 [graph (+ ll)]
-Proj14 -
+| Project Number | Description | Structure used |\
+| --- | --- | --- |
+| 1 | Simple Copy Command | arrays |
+| 2 | Parameter Passing | arrays |
+| 3 | Array Commands | arrays |
+| 4 | Find and Replace Strings | arrays |
+| 5 | Balanced Symbol Checker | stack / ll |
+| 6 | Maze Solving | stack / ll |
+| 7 | Restaurant Waiting List | queue / ll |
+| 8 | Infix Expression Evaluator | stack / ll |
+| 9 | Recursion Examples | none |
+| 10 | Hash Tables w/ Chaining | hash table |
+| 11 | Fixing Code (incomplete) | none |
+| 12 | Linked List Recursive Fx | ll |
+| 13 | Flight Simulator | Graph (+ ll) |
