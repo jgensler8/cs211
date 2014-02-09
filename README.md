@@ -1,7 +1,7 @@
 **CS211: Programming Practicum**
 ===
 
-| Project Number | Description | Structure used |\
+| Project Number | Description | Structure used |
 | --- | --- | --- |
 | 1 | Simple Copy Command | arrays |
 | 2 | Parameter Passing | arrays |
